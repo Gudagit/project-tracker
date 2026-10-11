@@ -19,7 +19,7 @@ function App() {
       setClients(clientsData);
       setProjects(projectsData);
       setError(null);
-    } catch (err) {
+    } catch {
       setError('Could not reach the server. Is the backend running on port 3000?');
     } finally {
       setLoading(false);

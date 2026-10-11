@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../api';
 
 function ClientsSection({ clients, onChange }) {
@@ -77,5 +78,14 @@ function ClientsSection({ clients, onChange }) {
     </section>
   );
 }
+
+ClientsSection.propTypes = {
+  clients: PropTypes.arrayOf(PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string,
+})).isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default ClientsSection;

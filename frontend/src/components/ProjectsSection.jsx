@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../api';
 
 const STATUS_OPTIONS = ['Not Started', 'In Progress', 'Done'];
@@ -134,5 +135,26 @@ function ProjectsSection({ projects, clients, onChange }) {
     </section>
   );
 }
+
+const clientShape = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string,
+});
+
+ProjectsSection.propTypes = {
+  projects: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      deadline: PropTypes.string,
+      isPaid: PropTypes.bool.isRequired,
+      client: clientShape,
+    })
+  ).isRequired,
+  clients: PropTypes.arrayOf(clientShape).isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default ProjectsSection;
